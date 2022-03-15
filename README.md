@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Stocks Watchlist
 
-## Getting Started
+### A simple dashboard for following your favorite stocks.
 
-First, run the development server:
+Live demo | [Stocks Watchlist](https://stocks-watchlist-ritwaldev.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+# How to use
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You will need to sign up for a Yahoo Finance API account to get your API keys, then clone this repo and create a .env.local file and add the following key:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+API_KEY= "YOUR-API-KEY-HERE"
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# Note
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Yahoo API free account limit is 100 requests per day. If you don't get charts data in the demo site, its probably because this limit has been exceeded.
 
-## Learn More
+# Credits
 
-To learn more about Next.js, take a look at the following resources:
+By [ritwal](https://www.ritwal.com)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Built with React.js | Next.js | Bootstrap 5 | Lrightweight-charts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Data source Yahoo Finance API

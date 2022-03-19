@@ -24,7 +24,7 @@ This is a list of features I would like to add to the app. If you would like to 
 
   A- Add tickers in watch list as url params and load watch list base on query params. This will make watch lists easier to share. Maybe also add a share wash list button that copies current url.
 
-  B- Sign-up .. Not preferable
+  B- Sign-up .. Not preferable.
 
 - Scrolling on mobile is currently awkward. Charts takes up most of the screen and user can't scroll page while touching chart.
 

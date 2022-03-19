@@ -105,7 +105,7 @@ const WatchList = ({
               target="_blank"
               rel="noreferrer"
             >
-              Take a look at project's repo here.
+              Take a look at project repo here.
             </a>
           </p>
         </div>

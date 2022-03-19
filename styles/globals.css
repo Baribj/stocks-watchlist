@@ -118,6 +118,7 @@
 .sidepanel-stock {
   border-bottom: 1px solid var(--b);
   cursor: pointer;
+  user-select: none;
 }
 
 .sidepanel-ticker {
@@ -159,21 +160,19 @@
 }
 
 .small-close-icon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translate(0%, -50%);
   color: var(--red);
   cursor: pointer;
 }
 
 .small-add-icon {
-  position: absolute;
-  top: 50%;
-  right: 35px;
-  transform: translate(0%, -50%);
   color: var(--bs-primary);
   cursor: pointer;
+}
+
+.delete-ticker-from-watchlist .small-close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .activeTicker {

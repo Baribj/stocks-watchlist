@@ -165,23 +165,15 @@ const Body = ({ currentTicker }) => {
 
       <div className="body-footer bg-t p-2 px-3">
         <p className="header-footer-text text-end my-muted-text mb-1">
-          {/* <span className="text-white mx-2">|</span> */}
-          Source:
+          Open Source Project:
           <a
-            href="https://www.yahoofinanceapi.com/"
+            href="https://github.com/ritwaldev/stocks-watchlist"
             target="_blank"
             rel="noreferrer"
             className="my-muted-text ms-1"
           >
-            Yahoo Finance API
+            Github
           </a>
-          {/* <span className="text-white mx-2">|</span> Inspired by:
-          <a href="" className="my-muted-text ms-1">
-            Webull
-          </a>
-          <span className="text-white mx-2">|</span>
-          Technology Stack: React.js, Next.js, Tradingview lightweight-charts.js
-          and Bootstrap 5 */}
         </p>
       </div>
     </div>

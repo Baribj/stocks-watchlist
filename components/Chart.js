@@ -52,7 +52,7 @@ const Chart = ({ currentTicker, range, interval }) => {
   const [error, setError] = useState(false);
 
   /****************************************/
-  /* Handeling screen size change */
+  /* Handling screen size change */
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -76,7 +76,7 @@ const Chart = ({ currentTicker, range, interval }) => {
 
   useEffect(() => {
     if (chart) {
-      const width = chartContainerDom.current.offsetWidth; // for this to work, overflow: hidden has to be set on my body and my main HTML .. otherwise the canvas will strech the parent container and whtn the screen shrink in size offsetWidth will remain constant
+      const width = chartContainerDom.current.offsetWidth; // for this to work, overflow: hidden has to be set on my body and my main HTML .. otherwise the canvas will stretch the parent container and when the screen shrink in size offsetWidth will remain constant
       const height = chartContainerDom.current.offsetHeight;
       chart.applyOptions({ height: height, width: width });
     }
@@ -117,7 +117,7 @@ const Chart = ({ currentTicker, range, interval }) => {
         let stockPrices = [];
         for (let i = 0; i < close.length; i++) {
           if (open[i] !== null) {
-            // Yahoo finance sometimes return one candlestick data as null which causes vhart to crassh .. this takes care of that
+            // Yahoo finance sometimes return one candlestick data as null which causes chart to crash .. this takes care of that
             stockPrices.push({
               time: timeStamp[i],
               open: open[i],
@@ -192,33 +192,44 @@ const Chart = ({ currentTicker, range, interval }) => {
         });
       }
 
+      // reset default zoom and scroll position
+      chart.timeScale().resetTimeScale();
+
+      // Push price data
       candleSeries.setData(stockData.price);
+
+      // Push volume data
       volumeSeries.setData(stockData.volume);
 
-      // subscriber function to crossHair movmnet
+      let price, volume, volumeRaw, open, high, low, close;
+      // subscriber function to crossHair movement
       function crosshairMove(param) {
-        if (!param.point) {
-          return;
+        // prevent error when crosshair is not over a candlestick .. if no candlestick, get last candlestick data, otherwise get current candlestick data
+        // --  !param.point catches crosshair as it leaves chart
+        // -- !param.seriesPrices.get(candleSeries) || param.seriesPrices.get(volumeSeries) catches  crosshair as it is still on chart but there is no candlestick bar to report (happens when crosshair is in a vertically empty area)
+        if (
+          // if no candlestick, get last candlestick info
+          !param.point ||
+          !param.seriesPrices.get(candleSeries) ||
+          !param.seriesPrices.get(volumeSeries)
+        ) {
+          price = stockData.price[stockData.price.length - 1];
+          volumeRaw = stockData.volume[stockData.volume.length - 1].value;
+        } else {
+          // get current candlestick data
+          price = param.seriesPrices.get(candleSeries);
+          volumeRaw = param.seriesPrices.get(volumeSeries);
         }
 
-        const prices = param.seriesPrices.get(candleSeries);
-
-        const volumeRaw = param.seriesPrices.get(volumeSeries);
-
-        if (!prices || !volumeRaw) {
-          return;
-        }
-
-        const volume = volumeToComma(volumeRaw);
+        open = price.open.toFixed(2);
+        high = price.high.toFixed(2);
+        low = price.low.toFixed(2);
+        close = price.close.toFixed(2);
+        volume = volumeToComma(volumeRaw);
 
         function volumeToComma(x) {
           return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
-
-        const open = prices.open.toFixed(2);
-        const high = prices.high.toFixed(2);
-        const low = prices.low.toFixed(2);
-        const close = prices.close.toFixed(2);
 
         let status;
         if (open < close) {

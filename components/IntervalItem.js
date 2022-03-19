@@ -24,44 +24,6 @@ const IntervalItem = ({
           </div>
         );
       })}
-
-      {/* <div
-        className={`interval-item ${interval === "5m" && "active"}`}
-        id="5m"
-        onClick={handleChangeInterval}
-      >
-        5m
-      </div>
-
-      <div
-        className={`interval-item ${interval === "15m" && "active"}`}
-        id="15m"
-        onClick={handleChangeInterval}
-      >
-        15m
-      </div>
-
-      <div
-        className={`interval-item ${interval === "1d" && "active"}`}
-        id="1d"
-        onClick={handleChangeInterval}
-      >
-        1d
-      </div>
-      <div
-        className={`interval-item ${interval === "1wk" && "active"}`}
-        id="1wk"
-        onClick={handleChangeInterval}
-      >
-        1w
-      </div>
-      <div
-        className={`interval-item ${interval === "1mo" && "active"}`}
-        id="1mo"
-        onClick={handleChangeInterval}
-      >
-        1mo
-      </div> */}
     </div>
   );
 };

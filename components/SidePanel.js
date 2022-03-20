@@ -23,6 +23,8 @@ const SidePanel = ({ handleCurrentTicker, currentTicker }) => {
 
   const [addingTicker, setAddingTicker] = useState(false);
 
+  const [tickersAdded, setTickersAdded] = useState(0);
+
   const tickerInput = useRef();
 
   function handleAddTickerButton() {
@@ -34,6 +36,7 @@ const SidePanel = ({ handleCurrentTicker, currentTicker }) => {
     if (tickerInput.current.value !== "") {
       const ticker = tickerInput.current.value.toUpperCase();
       setTickers([...tickers, ticker]);
+      setTickersAdded((prevCount) => prevCount + 1);
       handleCloseTickerInput();
     }
   }
@@ -68,6 +71,7 @@ const SidePanel = ({ handleCurrentTicker, currentTicker }) => {
         <WatchList
           handleCurrentTicker={handleCurrentTicker}
           tickers={tickers}
+          tickersAdded={tickersAdded}
           currentTicker={currentTicker}
           handleRemoveTicker={handleRemoveTicker}
         />

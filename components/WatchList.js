@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 const WatchList = ({
   handleCurrentTicker,
   tickers,
+  tickersAdded,
   currentTicker,
   handleRemoveTicker,
 }) => {
@@ -15,6 +16,7 @@ const WatchList = ({
   useEffect(() => {
     // if there are tickers
     if (tickers.length > 0) {
+      // if there are tickers
       async function fetchTickerData() {
         setFetchingData(true);
         setError(false);
@@ -83,6 +85,16 @@ const WatchList = ({
     // if tickers have been deleted
     else {
       setTickersInfo(false);
+    }
+  }, [tickersAdded]);
+
+  useEffect(() => {
+    // remove tickers
+    if (tickersInfo.length > 0) {
+      const currentTickers = tickersInfo.filter((ticker) =>
+        tickers.includes(ticker.symbol)
+      );
+      setTickersInfo(currentTickers);
     }
   }, [tickers]);
 

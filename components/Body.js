@@ -80,14 +80,14 @@ const rangeIntervalMap = {
     "1wk": true,
     "1mo": true,
   },
-  max: {
+  /* max: { Yahoo API enforces 3 month dataGranularity and ignores the interval we send
     "1m": false,
     "5m": false,
     "15m": false,
     "1d": true,
     "1wk": true,
     "1mo": true,
-  },
+  }, */
 };
 
 const Body = ({ currentTicker }) => {

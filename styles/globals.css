@@ -53,9 +53,13 @@
 
 /**********************************************/
 
+.page {
+  height: 100vh;
+}
 /* Parent container */
 .parent-container {
   min-height: 100%;
+  max-height: 100%;
 }
 
 /* Sidebar */
@@ -87,10 +91,14 @@
 /*
 
 *********************************************
- Sidepanel Styling
+ Side panel Styling
 *********************************************
 
 */
+
+.sidepanel {
+  min-height: 40%;
+}
 
 @media (min-width: 768px) {
   .sidepanel {
@@ -105,6 +113,11 @@
     width: 100%;
     order: 2;
   }
+}
+
+.sidepanel,
+.sidepanel-body {
+  overflow: auto;
 }
 
 .sidepanel-header {
@@ -185,8 +198,13 @@
  Body Styling
 *********************************************
 
-
 */
+
+.body {
+  min-height: 60%;
+  background-color: var(--s);
+}
+
 .body-header {
   border-bottom: 1px solid var(--b);
 }

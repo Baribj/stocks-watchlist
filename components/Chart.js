@@ -52,6 +52,11 @@ const Chart = ({ currentTicker, range, interval }) => {
   const [error, setError] = useState(false);
 
   /****************************************/
+  /* 
+  This is duplicate .. there is already an event listener for screen size change on the Layout.js component.
+  I should pass the state down to the component using context API instead of hooking another event listener.
+  */
+
   /* Handling screen size change */
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;

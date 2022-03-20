@@ -2,7 +2,24 @@ import { useState, useRef } from "react";
 import WatchList from "./WatchList";
 
 const SidePanel = ({ handleCurrentTicker, currentTicker }) => {
-  const [tickers, setTickers] = useState(["AAPL", "GOOG"]);
+  const [tickers, setTickers] = useState([
+    "AAPL",
+    "GOOG",
+    /* "MSFT",
+    "FB",
+    "TSLA",
+    "AMZN",
+    "NVDA",
+    "AMD",
+    "GME",
+    "TXN",
+    "NFLX",
+    "TMUS",
+    "SBUX",
+    "CSX",
+    "GILD",
+    "AMGN", */
+  ]);
 
   const [addingTicker, setAddingTicker] = useState(false);
 

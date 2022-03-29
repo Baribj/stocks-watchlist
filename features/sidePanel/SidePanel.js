@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import WatchList from "./WatchList";
 
-const SidePanel = ({ handleCurrentTicker, currentTicker }) => {
+const SidePanel = () => {
   const [tickers, setTickers] = useState([
     "AAPL",
     "GOOG",
@@ -69,10 +69,8 @@ const SidePanel = ({ handleCurrentTicker, currentTicker }) => {
       </div>
       <div className="sidepanel-body d-flex flex-column flex-grow-1 bg-s border-e">
         <WatchList
-          handleCurrentTicker={handleCurrentTicker}
           tickers={tickers}
           tickersAdded={tickersAdded}
-          currentTicker={currentTicker}
           handleRemoveTicker={handleRemoveTicker}
         />
 

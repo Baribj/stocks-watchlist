@@ -1,12 +1,16 @@
 import dynamic from "next/dynamic";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import RangeItem from "./RangeItem";
 import IntervalItem from "./IntervalItem";
 
+import { useSelector } from "react-redux";
+
+import { selectedTicker } from "../features/sidePanel/activeTickerSlice";
+
 const Chart = dynamic(import("./Chart"), { ssr: false });
 
-// Mapping which intervals are avialave for each range
+// Mapping which intervals are available for each range
 const rangeIntervalMap = {
   "1d": {
     "1m": true,
@@ -90,7 +94,8 @@ const rangeIntervalMap = {
   }, */
 };
 
-const Body = ({ currentTicker }) => {
+const Body = () => {
+  const activeTicker = useSelector(selectedTicker);
   /*  const rangeDropDownList = useRef(); */
   const [rangeDropDownList, setRangeDropDownList] = useState(false);
 
@@ -148,18 +153,14 @@ const Body = ({ currentTicker }) => {
       </div>
 
       <div className="body-body h-100 bg-s">
-        {!currentTicker ? (
+        {!selectedTicker ? (
           <div className="d-flex align-items-center justify-content-center h-100">
             <h3 className="my-muted-text p-5 text-center">
               Click on a stock to view its chart
             </h3>
           </div>
         ) : (
-          <Chart
-            currentTicker={currentTicker}
-            range={range}
-            interval={interval}
-          />
+          <Chart range={range} interval={interval} />
         )}
       </div>
 

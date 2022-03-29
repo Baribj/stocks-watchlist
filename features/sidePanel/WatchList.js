@@ -8,8 +8,6 @@ const WatchList = ({ tickers, tickersAdded, handleRemoveTicker }) => {
   const activeTicker = useSelector(selectedTicker);
   const dispatch = useDispatch();
 
-  console.log(activeTicker);
-
   const [tickersInfo, setTickersInfo] = useState([]);
 
   const [fetchingData, setFetchingData] = useState(false);

@@ -2,6 +2,10 @@ import { useEffect, useState, useRef } from "react";
 
 import { createChart, CrosshairMode } from "lightweight-charts";
 
+import { useSelector } from "react-redux";
+
+import { selectedTicker } from "../features/sidePanel/activeTickerSlice";
+
 const chartOptions = {
   layout: {
     backgroundColor: "#0b0f1c",
@@ -38,7 +42,8 @@ const chartOptions = {
 
 let chart, candleSeries, volumeSeries;
 
-const Chart = ({ currentTicker, range, interval }) => {
+const Chart = ({ range, interval }) => {
+  const activeTicker = useSelector(selectedTicker);
   const chartContainerDom = useRef();
 
   const chartDom = useRef();
@@ -91,14 +96,14 @@ const Chart = ({ currentTicker, range, interval }) => {
   // Fetch data and update state with ready-to-use data
   useEffect(() => {
     // check to make sure ticker isn't null before calling the API
-    if (currentTicker) {
+    if (activeTicker) {
       // set loading status to true
       setLoadingStockData(true);
       // Fetch data, format response in chart.js ready format, and save in state
       async function fetchPriceHistory() {
-        /*  const APIlink = `https://yfapi.net/v8/finance/chart/${currentTicker}?range=${range}&region=US&interval=${interval}&lang=en`; */
+        /*  const APIlink = `https://yfapi.net/v8/finance/chart/${activeTicker}?range=${range}&region=US&interval=${interval}&lang=en`; */
 
-        const APIlink = `/api/chart/${currentTicker}?range=${range}&region=US&interval=${interval}&lang=en`;
+        const APIlink = `/api/chart/${activeTicker}?range=${range}&region=US&interval=${interval}&lang=en`;
 
         const response = await fetch(APIlink);
         const data = await response.json();
@@ -166,7 +171,7 @@ const Chart = ({ currentTicker, range, interval }) => {
       }
       runFetch();
     }
-  }, [currentTicker, range, interval]);
+  }, [activeTicker, range, interval]);
 
   // handle chart creating / updating on data change
   useEffect(() => {

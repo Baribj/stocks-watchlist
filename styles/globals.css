@@ -56,17 +56,6 @@
 .page {
   height: 100vh;
 }
-/* Parent container */
-.parent-container {
-  min-height: 100%;
-  max-height: 100%;
-}
-
-/* Sidebar */
-.sidebar {
-  /* width: 50px; */
-  width: 0px;
-}
 
 /*
 

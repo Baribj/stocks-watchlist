@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
-const WatchList = ({
-  handleCurrentTicker,
-  tickers,
-  tickersAdded,
-  currentTicker,
-  handleRemoveTicker,
-}) => {
+import { useSelector, useDispatch } from "react-redux";
+
+import { selectedTicker, selectActive } from "./activeTickerSlice";
+
+const WatchList = ({ tickers, tickersAdded, handleRemoveTicker }) => {
+  const activeTicker = useSelector(selectedTicker);
+  const dispatch = useDispatch();
+
   const [tickersInfo, setTickersInfo] = useState([]);
 
   const [fetchingData, setFetchingData] = useState(false);
@@ -146,11 +147,13 @@ const WatchList = ({
                   </div>
                   <div
                     className={`sidepanel-stock d-flex justify-content-between p-3 ${
-                      ticker.symbol === currentTicker ? "activeTicker" : ""
+                      ticker.symbol === activeTicker ? "activeTicker" : ""
                     }`}
                     style={{ borderLeft: `1px solid ${ticker.color}` }}
                     id={ticker.symbol}
-                    onClick={handleCurrentTicker}
+                    onClick={() => {
+                      dispatch(selectActive(ticker.symbol));
+                    }}
                   >
                     <div className="wrapper ticker-and-fullname-wrapper">
                       <p className="sidepanel-ticker mb-0">{ticker.symbol}</p>

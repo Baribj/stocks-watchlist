@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import WatchList from "./WatchList";
 
-const SidePanel = ({ handleCurrentTicker, currentTicker }) => {
+const SidePanel: React.FC = () => {
   const [tickers, setTickers] = useState([
     "AAPL",
     "GOOG",
@@ -25,36 +25,39 @@ const SidePanel = ({ handleCurrentTicker, currentTicker }) => {
 
   const [tickersAdded, setTickersAdded] = useState(0);
 
-  const tickerInput = useRef();
+  const tickerInput = useRef<HTMLInputElement>(null);
 
-  function handleAddTickerButton() {
+  function handleAddTickerButton(): void {
     setAddingTicker(true);
   }
 
   // Adding a ticker by clicking the + sign
-  function handleAddTickerSvg() {
+  function handleAddTickerSvg(): void {
     if (tickerInput.current.value !== "") {
       const ticker = tickerInput.current.value.toUpperCase();
       setTickers([...tickers, ticker]);
+      // this is a temp solution to avoid running the useEffect inside WatchList when a ticker is deleted
       setTickersAdded((prevCount) => prevCount + 1);
       handleCloseTickerInput();
     }
   }
 
   // Adding a ticker by pressing the Enter key
-  function handleAddTickerEnterKey(e) {
+  function handleAddTickerEnterKey(
+    e: React.KeyboardEvent<HTMLInputElement>
+  ): void {
     if (e.key === "Enter") {
       handleAddTickerSvg();
     }
   }
 
   // Closing the add ticker input
-  function handleCloseTickerInput() {
+  function handleCloseTickerInput(): void {
     setAddingTicker(false);
   }
 
   // Removing a ticker from watch list
-  function handleRemoveTicker(tickerToRemove) {
+  function handleRemoveTicker(tickerToRemove: string): void {
     setTickers(
       tickers.filter((singleTicker) => {
         return singleTicker !== tickerToRemove;
@@ -69,10 +72,8 @@ const SidePanel = ({ handleCurrentTicker, currentTicker }) => {
       </div>
       <div className="sidepanel-body d-flex flex-column flex-grow-1 bg-s border-e">
         <WatchList
-          handleCurrentTicker={handleCurrentTicker}
           tickers={tickers}
           tickersAdded={tickersAdded}
-          currentTicker={currentTicker}
           handleRemoveTicker={handleRemoveTicker}
         />
 

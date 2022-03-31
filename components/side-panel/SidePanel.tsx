@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import WatchList from "./WatchList";
+import WatchList from "../../features/watch-list/WatchList";
 
 const SidePanel: React.FC = () => {
   const [tickers, setTickers] = useState([

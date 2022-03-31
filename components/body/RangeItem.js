@@ -2,20 +2,20 @@ const RangeItem = ({
   handleChangeActiveRange,
   rangeIntervalMap,
   interval,
-  handleUpdateInervalonRnageUpdate,
+  handleUpdateIntervalOnRangeUpdate,
 }) => {
   // This function fires when the range is changed
   function updateInterval(e) {
-    //First, when a new range is selected, we need to check for the selected interval, and make sure if it is allowd for the new range
+    //First, when a new range is selected, we need to check for the selected interval, and make sure if it is allowed for the new range
     if (rangeIntervalMap[e.currentTarget.id][interval] === false) {
-      // if not, we need to set the active interval to the first allowed one for this eange
+      // if not, we need to set the active interval to the first allowed one for this range
       const intervalsKeys = Object.keys(rangeIntervalMap[e.currentTarget.id]); // First, get all intervals in an array
 
       for (let i = 0; i < intervalsKeys.length; i++) {
         // then, loop thro the array
         if (rangeIntervalMap[e.currentTarget.id][intervalsKeys[i]] === true) {
           // check if the new interval is allowed for this range, if yes, set it to be the new interval and break
-          handleUpdateInervalonRnageUpdate(intervalsKeys[i]);
+          handleUpdateIntervalOnRangeUpdate(intervalsKeys[i]);
           break;
         }
       }

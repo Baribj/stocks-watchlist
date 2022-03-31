@@ -4,7 +4,9 @@ import { createChart, CrosshairMode } from "lightweight-charts";
 
 import { useSelector } from "react-redux";
 
-import { selectedTicker } from "../features/sidePanel/activeTickerSlice";
+import { selectedTicker } from "../../features/watch-list/activeTickerSlice";
+
+import { windowDimensions } from "../../features/window-dimensions/windowDimensionsSlice";
 
 const chartOptions = {
   layout: {
@@ -44,6 +46,9 @@ let chart, candleSeries, volumeSeries;
 
 const Chart = ({ range, interval }) => {
   const activeTicker = useSelector(selectedTicker);
+
+  const currentWindowDimensions = useSelector(windowDimensions);
+
   const chartContainerDom = useRef();
 
   const chartDom = useRef();
@@ -56,41 +61,13 @@ const Chart = ({ range, interval }) => {
 
   const [error, setError] = useState(false);
 
-  /****************************************/
-  /* 
-  This is duplicate .. there is already an event listener for screen size change on the Layout.js component.
-  I should pass the state down to the component using context API instead of hooking another event listener.
-  */
-
-  /* Handling screen size change */
-  function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-      width,
-      height,
-    };
-  }
-
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  );
-
-  useEffect(() => {
-    function handleWindowResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-
-    window.addEventListener("resize", handleWindowResize);
-    return () => window.removeEventListener("resize", handleWindowResize);
-  }, []);
-
   useEffect(() => {
     if (chart) {
       const width = chartContainerDom.current.offsetWidth; // for this to work, overflow: hidden has to be set on my body and my main HTML .. otherwise the canvas will stretch the parent container and when the screen shrink in size offsetWidth will remain constant
       const height = chartContainerDom.current.offsetHeight;
       chart.applyOptions({ height: height, width: width });
     }
-  }, [windowDimensions]);
+  }, [currentWindowDimensions]);
   /****************************************/
 
   // Fetch data and update state with ready-to-use data

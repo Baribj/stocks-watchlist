@@ -6,7 +6,7 @@ import IntervalItem from "./IntervalItem";
 
 import { useSelector } from "react-redux";
 
-import { selectedTicker } from "../features/sidePanel/activeTickerSlice";
+import { selectedTicker } from "../../features/watch-list/activeTickerSlice";
 
 const Chart = dynamic(import("./Chart"), { ssr: false });
 
@@ -96,7 +96,7 @@ const rangeIntervalMap = {
 
 const Body = () => {
   const activeTicker = useSelector(selectedTicker);
-  /*  const rangeDropDownList = useRef(); */
+
   const [rangeDropDownList, setRangeDropDownList] = useState(false);
 
   const [range, setRange] = useState("1y");
@@ -116,7 +116,7 @@ const Body = () => {
     setInterval(e.currentTarget.id);
   }
 
-  function handleUpdateInervalonRnageUpdate(newInterval) {
+  function handleUpdateIntervalOnRangeUpdate(newInterval) {
     setInterval(newInterval);
   }
 
@@ -135,8 +135,8 @@ const Body = () => {
               handleChangeActiveRange={handleChangeActiveRange}
               rangeIntervalMap={rangeIntervalMap}
               interval={interval}
-              handleUpdateInervalonRnageUpdate={
-                handleUpdateInervalonRnageUpdate
+              handleUpdateIntervalOnRangeUpdate={
+                handleUpdateIntervalOnRangeUpdate
               }
             />
           )}
@@ -153,7 +153,7 @@ const Body = () => {
       </div>
 
       <div className="body-body h-100 bg-s">
-        {!selectedTicker ? (
+        {!activeTicker ? (
           <div className="d-flex align-items-center justify-content-center h-100">
             <h3 className="my-muted-text p-5 text-center">
               Click on a stock to view its chart

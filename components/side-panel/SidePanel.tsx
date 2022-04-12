@@ -140,6 +140,7 @@ const SidePanel: React.FC = () => {
           )}
         </div>
       </div>
+
       <div className="sidepanel-footer bg-t p-2 px-3">
         <p className="header-footer-text my-muted-text mb-1 text-center">
           Built by:

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+/* import { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 
@@ -6,8 +6,8 @@ import { getDimensions } from "./windowDimensionsSlice";
 
 const windowHeight = () => {
   const dispatch = useDispatch();
-  // Get window's height .. this is to be used instead of 100vh which causes stuff to be hidden behind Safari's bottom bar.
 
+  // Get window's height .. this is to be used instead of 100vh which causes stuff to be hidden behind Safari's bottom bar.
   useEffect(() => {
     function handleWindowResize() {
       dispatch(
@@ -24,3 +24,4 @@ const windowHeight = () => {
 };
 
 export default windowHeight;
+ */
